@@ -44,38 +44,9 @@ def test_using_level3_data_get_info_check_expected_value(url, index, field1, fie
     assert response_body[index][field1][field2][0][field3] == expected_value
 
 
-def test_get_info_check_UDI_production_identifier_SubComponents_Name_insulin_service(info_url):
-    response = requests.get(info_url)
-    response_body = response.json()
-    inx = len(response_body)
-    found = 0
-    for i in range(0,inx):
-        ins = len(response_body[i]["UDI / Production Identifier"]["Sub-Components"])
-        for j in range(0,ins):
-            if response_body[i]["UDI / Production Identifier"]["Sub-Components"][j]["Name"] == "insulin-service" :
-                found = 1
-                break
-    
-    assert found == 0
-
-def test_get_info_check_content_type_equals_xml(info_url):
-    response = requests.get(info_url)
-    assert response.headers['Content-Type'] == "application/xml"
-
-def test_get_info_api(info_url):
-
-    test_get_info_check_UDI_production_identifier_SubComponents_Name_insulin_service(info_url)
-    test_get_info_check_content_type_equals_xml(info_url)
+ 
 
 
-def main():
-
-    test_get_info_api(info_url)
-    test_get_info_api(sandbox_info_url)
-    
-    
-if __name__ == "__main__":
-         main()
 
 
 
